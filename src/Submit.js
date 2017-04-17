@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
+import axios from 'axios';
 
 import Ingredients from './Ingredients';
 import IngredientList from './IngredientList';
@@ -15,14 +16,13 @@ class Submit extends Component {
     constructor(props){
         super(props);
         this.state={
-            recipes: JSON.parse(localStorage.getItem('recipes')) || [],
             newRecipe: {
                 name: "New Recipe",
                 description: "Description",
                 ingredients: [],
             },
                 uploadedFileCloudinaryUrl: ''
-            }
+            };
        
         this.submitRecipe = this.submitRecipe.bind(this);
         this.onImageDrop = this.onImageDrop.bind(this);
@@ -58,14 +58,14 @@ class Submit extends Component {
         let newRecipe = this.state.newRecipe;
         newRecipe.name = this.name.value;
         newRecipe.description = this.description.value;
-        newRecipe.image = this.state.uploadedFileCloudinaryUrl;
+        newRecipe.cloudinaryURL = this.state.uploadedFileCloudinaryUrl;
         this.setState({newRecipe});
        
-        let recipes = this.state.recipes;
-        recipes.push(newRecipe);
-        this.setState({recipes});
-        localStorage.setItem('recipes', JSON.stringify(recipes));
-         console.log(recipes);
+        axios.post('/recipes', {recipes: this.state.newRecipe})
+  .then(response => {
+    console.log(response.config.data);
+  });
+         console.log(newRecipe);
         this.props.history.push('/');
     }
     
@@ -74,7 +74,6 @@ class Submit extends Component {
         let newRecipe = this.state.newRecipe;
         newRecipe.ingredients.push({quantity:quantity, ingredient:ingredient});
         this.setState({newRecipe: newRecipe});
-        console.log(newRecipe);
     }
     
     render() {
@@ -128,9 +127,9 @@ class Submit extends Component {
                 </div>
             
             </div>
-            )
+            );
     }
 }
 
 
-export default Submit
+export default Submit;

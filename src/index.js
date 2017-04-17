@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import './index.css';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   NavLink
 } from 'react-router-dom';
 import Home from './Home';
 import Submit from './Submit';
-import createBrowserHistory from 'history/createBrowserHistory'
+import createBrowserHistory from 'history/createBrowserHistory';
+import Edit from './Edit';
 
 const history = createBrowserHistory()
 
@@ -40,6 +39,7 @@ ReactDOM.render(
 
       <Route exact path="/" component={Home}/>
       <Route path="/submit" component={Submit} history={history}/>
+      <Route path="/edit/:id" component={Edit}/>
     </div>
   </Router>,
   document.getElementById('root')

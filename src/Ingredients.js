@@ -32,8 +32,8 @@ addIngredients() {
                      placeholder="Ingredient" />
                      <button type="button" onClick={this.addIngredients} className="btn btn-info"> Add </button>
                   </div>  
-            )
+            );
     }
 }
 
-export default Ingredients
+export default Ingredients;
