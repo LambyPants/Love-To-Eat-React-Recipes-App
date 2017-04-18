@@ -4,7 +4,12 @@ bodyParser  = require("body-parser"),
 mongoose    = require("mongoose");
 
 //App Config
-mongoose.connect("mongodb://localhost/lovetoeat");
+// mongoose.connect("mongodb://localhost/lovetoeat");
+var url = process.env.DATABASEURL || "mongodb://localhost/lovetoeat";
+
+mongoose.connect(url);
+// mongoose.connect("mongodb://localhost/todo_app");
+// mongoose.connect("mongodb://cleverbridge:reimageproject5@ds059205.mlab.com:59205/reimageproject");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
