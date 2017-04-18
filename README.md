@@ -1,5 +1,7 @@
 This is a MERN stack application which allows users to upload, edit, and save their favorite recipes through a RESTful API which combines both React JS with a Node.Js framework. 
 
+View the live app here: https://sheltered-eyrie-54525.herokuapp.com/
+
 
 <h1>Technologies Used </h1>
 <ul>
