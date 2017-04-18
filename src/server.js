@@ -5,10 +5,11 @@ mongoose    = require("mongoose");
 
 //App Config
 // mongoose.connect("mongodb://localhost/lovetoeat");
-var url = process.env.DATABASEURL || "mongodb://localhost/lovetoeat";
 
-mongoose.connect(url);
 
+mongoose.connect("mongodb://lovetoeat:lovetoeat@ds163360.mlab.com:63360/lovetoeatreact");
+// mongoose.connect("mongodb://localhost/todo_app");
+// mongoose.connect("mongodb://cleverbridge:reimageproject5@ds059205.mlab.com:59205/reimageproject");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
